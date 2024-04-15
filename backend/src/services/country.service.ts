@@ -37,7 +37,7 @@ export default class CountryService {
 
   // pour récuperer tous les pays d'un continent
   async getCountriesByContinent(continentCode: string) {
-    return await this.db.find({ continentCode });
+    return await this.db.findOneBy({ continentCode });
      }
 
 }

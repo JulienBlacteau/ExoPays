@@ -1,7 +1,3 @@
-import BookResolver from "./resolvers/book.resolver";
-import MaterialResolver from "./resolvers/country.resolver";
-import UserResolver from "./resolvers/user.resolver";
-import ReservationResolver from "./resolvers/reservation.resolver";
 import datasource from "./db";
 import { ApolloServer } from "@apollo/server";
 import { expressMiddleware } from "@apollo/server/express4";
@@ -11,15 +7,12 @@ import express from "express";
 import http from "http";
 import cors from "cors";
 import { buildSchema } from "type-graphql";
-import { startStandaloneServer } from "@apollo/server/standalone";
 import "reflect-metadata";
-import CategoryResolver from "./resolvers/category.resolver";
-import User from "./entities/user.entity";
+import CountryResolver from "./resolvers/country.resolver";
 
 export interface MyContext {
   req: express.Request;
   res: express.Response;
-  user?: User | null;
 }
 
 const app = express();
@@ -28,11 +21,7 @@ const httpServer = http.createServer(app);
 async function main() {
   const schema = await buildSchema({
     resolvers: [
-      BookResolver,
-      CategoryResolver,
-      MaterialResolver,
-      UserResolver,
-      ReservationResolver,
+      CountryResolver,
     ],
     validate: false,
   });

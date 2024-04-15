@@ -27,4 +27,8 @@ export default class Country {
   @Column()
   emoji: string;
 
+  @Field()
+  @Column()
+  continentCode: string;
+
 }
